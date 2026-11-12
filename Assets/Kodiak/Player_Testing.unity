@@ -133,6 +133,11 @@ GameObject:
   - component: {fileID: 166750445}
   - component: {fileID: 166750447}
   - component: {fileID: 166750446}
+  - component: {fileID: 166750452}
+  - component: {fileID: 166750451}
+  - component: {fileID: 166750450}
+  - component: {fileID: 166750449}
+  - component: {fileID: 166750448}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -275,7 +280,19 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta,/Pen/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 166750451}
+        m_TargetAssemblyTypeName: playerAttackInput, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -423,6 +440,72 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &166750448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166750441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de4f20264ec4564abb9d5ed481aa127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HurtBox
+  _healthTracker: {fileID: 0}
+--- !u!114 &166750449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166750441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e5e3681a54b1347b194f1f930c577f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitBox
+  damage: 1
+--- !u!114 &166750450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166750441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5f76f8fd11d6a4cae0a99ec203d3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  Health: 0
+--- !u!114 &166750451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166750441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7700d371d47bc5f42a6fe0065b0081e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::playerAttackInput
+--- !u!114 &166750452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166750441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d651b22036dca644da64ae9f5708b23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
+  attackTime: 0.05
+  coolDownDuration: 0.1
+  attackBox: {fileID: 0}
 --- !u!1 &1843121556
 GameObject:
   m_ObjectHideFlags: 0
