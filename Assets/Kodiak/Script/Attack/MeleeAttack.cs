@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
-    [SerializeField] float attackTime = 0.05f;
-    [SerializeField] float coolDownDuration = 0.1f;
+    [SerializeField] float attackTime = 0.15f;
+    [SerializeField] float coolDownDuration = 0.2f;
     private float startCooldownTime;
     private bool isAttacking;
 
