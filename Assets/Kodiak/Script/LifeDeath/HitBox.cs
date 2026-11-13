@@ -8,7 +8,7 @@ public class HitBox : MonoBehaviour
         if (!enabled)
             return;
 
-        if (otherCollider.TryGetComponent(out HurtBox hb))
+        if (otherCollider.TryGetComponent<HurtBox>(out HurtBox hb))
         {
             hb.Damage(damage);
         }

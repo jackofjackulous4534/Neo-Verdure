@@ -10,11 +10,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movement;
 
     private Rigidbody2D _rb;
+    private SpriteRenderer sprt;
 
     public void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        sprt = GetComponent<SpriteRenderer>();
         _moveSpeed = _walkSpeed;
+    }
+    public void Update()
+    {
+        
     }
 
     public void UpdateSpeed()

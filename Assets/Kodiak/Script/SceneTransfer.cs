@@ -3,8 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransfer : MonoBehaviour
 {
-    public void LoadScene(string SceneName)
+    [Scene]
+    [SerializeField] string SceneToLoad;
+    public void LoadScene()
     {
-        SceneManager.LoadScene("SceneName");
+        if (string.IsNullOrEmpty(SceneToLoad))
+        {
+            Debug.LogError("Missing SceneToLoad");
+            return;
+        }
+        if (SceneUtility.GetBuildIndexByScenePath(SceneToLoad) == -1)
+        {
+            Debug.LogError("Not Valid Scene");
+            return;
+        }
+
+        SceneManager.LoadScene(SceneToLoad);
     }
 }
