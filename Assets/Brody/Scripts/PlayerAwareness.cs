@@ -21,5 +21,15 @@ public class PlayerAwareness : MonoBehaviour
     void Update()
     {
         Vector2 enemyToPlayerVector = _player.position - transform.position;
+        DirectionToPlayer = enemyToPlayerVector.normalized;
+
+        if (enemyToPlayerVector.magnitude <= _playerAwarenessDistance)
+        {
+            AwareOfPlayer = true; 
+        }
+        else
+        {
+            AwareOfPlayer = false; 
+        }
     }
 }
