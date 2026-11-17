@@ -7,5 +7,6 @@ public class HurtBox : MonoBehaviour
     public void Damage(float damage)
     {
         _healthTracker.TakeDamage(damage);
+        Debug.Log("took damage");
     }
 }

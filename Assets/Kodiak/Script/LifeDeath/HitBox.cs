@@ -1,8 +1,13 @@
+using System;
 using UnityEngine;
 
+
+using NUnit.Framework;
+using System.Collections.Generic;
 public class HitBox : MonoBehaviour
 {
     [SerializeField] float damage = 1f;
+    public List<HurtBox> hurtBoxes = new List<HurtBox>();
     void HandleCollision(Collider2D otherCollider)
     {
         if (!enabled)
