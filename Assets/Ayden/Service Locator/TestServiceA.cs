@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class TestServiceA : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [RuntimeInitializeOnLoadMethod]
+    static void OnGameStart()
     {
-        
+        GameObject instance = new GameObject();
+        instance.name = "Test boi";
+        instance.AddComponent<TestServiceA>();
+        DontDestroyOnLoad(instance);
+        ServiceLocator.AddService(instance);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DoSomething()
     {
-        
+        Debug.Log("I did something!");
     }
 }
