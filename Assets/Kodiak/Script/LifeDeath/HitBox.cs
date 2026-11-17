@@ -1,46 +1,55 @@
-using System;
 using UnityEngine;
-
-
-using NUnit.Framework;
 using System.Collections.Generic;
+
+[RequireComponent(typeof(Collider2D))]
 public class HitBox : MonoBehaviour
 {
-    [SerializeField] float damage = 1f;
-    public List<HurtBox> hurtBox = new List<HurtBox>();
-    private BoxCollider2D boxCollider;
-    void Awake()
-    {
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
-    void HandleCollision(Collider2D otherCollider)
-    {
-        if (!enabled)
-            return;
+    [SerializeField] float _damage = 1f;
+    private HashSet<HurtBox> _hurtBoxesInField = new HashSet<HurtBox>();
+    private HashSet<HurtBox> _hurtBoxesHit = new HashSet<HurtBox>();
+    private bool _isAttacking = false;
 
+    void HandleCollisionEnter(Collider2D otherCollider)
+    {
         if (otherCollider.TryGetComponent<HurtBox>(out HurtBox hb))
         {
-            hb.Damage(damage);
-            hurtBox.Add(hb);
+            _hurtBoxesInField.Add(hb);
+            if (_isAttacking && !_hurtBoxesHit.Contains(hb)) 
+            {
+                DamageHurtBox(hb);
+            }
         }
     }
-    void HandleExit(Collider2D otherCollider)
+    void HandleCollisionExit(Collider2D otherCollider)
     {
-        if (!enabled)
-            return;
-
         if (otherCollider.TryGetComponent<HurtBox>(out HurtBox hb))
         {
-            hurtBox.Remove(hb);
+            _hurtBoxesInField.Remove(hb);
         }
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision) => HandleCollisionEnter(collision);
+    public void OnCollisionEnter2D(Collision2D collision) => HandleCollisionEnter(collision.collider);
+    public void OnTriggerExit2D(Collider2D collision) => HandleCollisionExit(collision);
+    public void OnCollisionExit2D(Collision2D collision) => HandleCollisionExit(collision.collider);
+
+    public void StartAttack()
     {
-        HandleCollision(collision);
+        foreach (HurtBox hb in _hurtBoxesInField)
+        {
+            DamageHurtBox(hb);
+        }
+        _isAttacking = true;
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void EndAttack()
     {
-        HandleCollision(collision.collider);
+        _hurtBoxesHit.Clear();
+        _isAttacking = false;
+    }
+
+    private void DamageHurtBox(HurtBox hurtBox)
+    {
+        hurtBox.Damage(_damage);
+        _hurtBoxesHit.Add(hurtBox);
     }
 
     public void OnTriggerExit2D(Collider2D collision)
