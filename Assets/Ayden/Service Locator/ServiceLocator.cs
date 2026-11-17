@@ -23,13 +23,20 @@ public static class ServiceLocator
         obj = default(T);
         foreach (var service in _services)
         {
+            Debug.Log("####################");
+            Debug.Log(service.GetType());
+            Debug.Log(typeof(T));
+
             if (service.GetType() is T)
             {
+                Debug.Log("####################");
                 Debug.Log("Found service");
                 obj = (T)service;
                 return true;
             }
         }
+        Debug.Log("####################");
+        Debug.Log("Failed to find service");
         return false;
     }
 }
