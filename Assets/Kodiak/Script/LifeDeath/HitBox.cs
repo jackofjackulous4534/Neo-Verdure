@@ -51,13 +51,4 @@ public class HitBox : MonoBehaviour
         hurtBox.Damage(_damage);
         _hurtBoxesHit.Add(hurtBox);
     }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        HandleExit(collision);
-    }
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        HandleExit(collision.collider);
-    }
 }
