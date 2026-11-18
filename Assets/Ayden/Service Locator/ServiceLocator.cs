@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using Object = System.Object;
 
 public static class ServiceLocator
@@ -18,25 +18,14 @@ public static class ServiceLocator
 
     public static bool GetService<T>(out T obj)
     {
-        Debug.Log(_services);
-        Debug.Log(_services.Count);
-        obj = default(T);
-        foreach (var service in _services)
+        obj = (T)_services.FirstOrDefault(x => x is T);
+        if (EqualityComparer<T>.Default.Equals(obj, default))
         {
-            Debug.Log("####################");
-            Debug.Log(service.GetType());
-            Debug.Log(typeof(T));
-
-            if (service.GetType() is T)
-            {
-                Debug.Log("####################");
-                Debug.Log("Found service");
-                obj = (T)service;
-                return true;
-            }
+            return false;
         }
-        Debug.Log("####################");
-        Debug.Log("Failed to find service");
-        return false;
+        else
+        {
+            return true;
+        }
     }
 }

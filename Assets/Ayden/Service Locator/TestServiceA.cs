@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 
 public class TestServiceA : MonoBehaviour
@@ -6,12 +7,11 @@ public class TestServiceA : MonoBehaviour
     static void OnGameStart()
     {
         GameObject instance = new GameObject();
-        instance.name = "Test boi";
+        instance.name = MethodBase.GetCurrentMethod().DeclaringType.ToString();
         instance.AddComponent<TestServiceA>();
         DontDestroyOnLoad(instance);
-        ServiceLocator.AddService(instance);
+        ServiceLocator.AddService(instance.GetComponent<TestServiceA>());
     }
-
     public void DoSomething()
     {
         Debug.Log("I did something!");

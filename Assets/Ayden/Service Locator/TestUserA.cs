@@ -5,7 +5,7 @@ public class TestUserA : MonoBehaviour
     private TestServiceA sv;
     void Start()
     {
-        if (ServiceLocator.GetService<TestServiceA>(out TestServiceA v))
+        if (ServiceLocator.GetService(out TestServiceA v))
         {
             sv = v;
             sv.DoSomething();
