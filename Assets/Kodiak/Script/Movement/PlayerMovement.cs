@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Variables")]
     [SerializeField] float _runSpeed = 8;
     [SerializeField] float _walkSpeed = 5;
+    [SerializeField] float _slowedEffect = 0.7f;
+    public bool slowed;
     private float _moveSpeed;
     private Vector2 _movement;
 
@@ -17,16 +19,20 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         sprt = GetComponent<SpriteRenderer>();
         _moveSpeed = _walkSpeed;
-    }
-    public void Update()
-    {
-        
+        slowed = false;
     }
 
     public void UpdateSpeed()
     {
         // moves the player based on the movement Vector2
-        _rb.linearVelocity = _movement * _moveSpeed;
+        if (slowed)
+        {
+            _rb.linearVelocity = _movement * _moveSpeed * _slowedEffect;
+        }
+        else if (!slowed)
+        {
+            _rb.linearVelocity = _movement * _moveSpeed;
+        }
     }
 
     public void Move(InputAction.CallbackContext ctx)
