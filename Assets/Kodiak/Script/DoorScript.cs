@@ -8,7 +8,7 @@ public class DoorScript : MonoBehaviour
     [SerializeField] float openSpeed = 2f;
     [SerializeField] float openDistance = 3f;
     [SerializeField] bool opened;
-    [SerializeField] bool locked;
+    public bool locked;
     private Vector2 closedPosition;
     private Vector2 openPosition;
     private PlayerMovement player;
@@ -18,6 +18,7 @@ public class DoorScript : MonoBehaviour
         player = FindAnyObjectByType<PlayerMovement>();
         openPosition = new Vector2(transform.position.x, transform.position.y + openDistance);
         closedPosition = transform.position;
+        locked = true;
     }
     public void Update()
     {
