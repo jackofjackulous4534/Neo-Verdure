@@ -29,6 +29,7 @@ public class OverrideKey : MonoBehaviour
             if (playerToDoorDistance <= 3f)
             {
                 door.locked = false;
+                Destroy(gameObject);
             }
         } else if (!pickedUp) 
         {
