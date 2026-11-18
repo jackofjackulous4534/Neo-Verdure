@@ -405,6 +405,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 831554217}
   - {fileID: 1388035564}
   - {fileID: 95058083}
   m_Father: {fileID: 0}
@@ -425,7 +426,6 @@ GameObject:
   - component: {fileID: 586690970}
   - component: {fileID: 586690972}
   - component: {fileID: 586690971}
-  - component: {fileID: 586690973}
   - component: {fileID: 586690974}
   - component: {fileID: 586690975}
   m_Layer: 5
@@ -554,24 +554,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586690969}
   m_CullTransparentMesh: 1
---- !u!114 &586690973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586690969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0325f2122ab75d345bb943e7fd07ae33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NameInfo
-  info: {fileID: 1476060766}
-  moveSpeed: 5
-  moveDistance: 100
-  openPosition: {x: 0, y: 0}
-  originalPosition: {x: 0, y: 0}
-  nextPosition: {x: 0, y: 0}
 --- !u!61 &586690974
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -662,14 +644,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 586690973}
+      - m_Target: {fileID: 831554218}
         m_TargetAssemblyTypeName: NameInfo, Assembly-CSharp
-        m_MethodName: moveInfo
-        m_Mode: 1
+        m_MethodName: ChangeCurrentSlide
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -685,7 +667,6 @@ GameObject:
   - component: {fileID: 620239515}
   - component: {fileID: 620239517}
   - component: {fileID: 620239516}
-  - component: {fileID: 620239518}
   - component: {fileID: 620239519}
   - component: {fileID: 620239520}
   m_Layer: 5
@@ -814,24 +795,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620239514}
   m_CullTransparentMesh: 1
---- !u!114 &620239518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620239514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0325f2122ab75d345bb943e7fd07ae33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NameInfo
-  info: {fileID: 1407789638}
-  moveSpeed: 5
-  moveDistance: 100
-  openPosition: {x: 0, y: 0}
-  originalPosition: {x: 0, y: 0}
-  nextPosition: {x: 0, y: 0}
 --- !u!61 &620239519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -922,18 +885,110 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 620239518}
+      - m_Target: {fileID: 831554218}
         m_TargetAssemblyTypeName: NameInfo, Assembly-CSharp
-        m_MethodName: moveInfo
-        m_Mode: 1
+        m_MethodName: ChangeCurrentSlide
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &698720737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698720738}
+  m_Layer: 5
+  m_Name: OpenPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &698720738
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698720737}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 831554217}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -45.354553, y: 30.028107}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &831554216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 831554217}
+  - component: {fileID: 831554218}
+  m_Layer: 0
+  m_Name: SlidesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &831554217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831554216}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 45.354553, y: -30.028107, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 698720738}
+  - {fileID: 1231002219}
+  m_Father: {fileID: 411520803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &831554218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831554216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0325f2122ab75d345bb943e7fd07ae33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NameInfo
+  nameSlides:
+  - {fileID: 333096118}
+  - {fileID: 1476060766}
+  - {fileID: 1306218169}
+  - {fileID: 316707015}
+  - {fileID: 1866818603}
+  - {fileID: 1407789638}
+  currentSlide: 0
+  moveSpeed: 1
+  openPosition: {fileID: 698720738}
+  closedPosition: {fileID: 1231002219}
 --- !u!1 &921918821
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +1000,6 @@ GameObject:
   - component: {fileID: 921918822}
   - component: {fileID: 921918824}
   - component: {fileID: 921918823}
-  - component: {fileID: 921918825}
   - component: {fileID: 921918826}
   - component: {fileID: 921918827}
   m_Layer: 5
@@ -1074,24 +1128,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921918821}
   m_CullTransparentMesh: 1
---- !u!114 &921918825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921918821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0325f2122ab75d345bb943e7fd07ae33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NameInfo
-  info: {fileID: 1306218169}
-  moveSpeed: 5
-  moveDistance: 100
-  openPosition: {x: 0, y: 0}
-  originalPosition: {x: 0, y: 0}
-  nextPosition: {x: 0, y: 0}
 --- !u!61 &921918826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1182,18 +1218,53 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 921918825}
+      - m_Target: {fileID: 831554218}
         m_TargetAssemblyTypeName: NameInfo, Assembly-CSharp
-        m_MethodName: moveInfo
-        m_Mode: 1
+        m_MethodName: ChangeCurrentSlide
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1231002218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231002219}
+  m_Layer: 5
+  m_Name: closedPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1231002219
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231002218}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 831554217}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 443.64545, y: 30.028107}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1236924299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,7 +1740,6 @@ GameObject:
   - component: {fileID: 1673211834}
   - component: {fileID: 1673211836}
   - component: {fileID: 1673211835}
-  - component: {fileID: 1673211837}
   - component: {fileID: 1673211838}
   - component: {fileID: 1673211839}
   m_Layer: 5
@@ -1798,24 +1868,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1673211833}
   m_CullTransparentMesh: 1
---- !u!114 &1673211837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673211833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0325f2122ab75d345bb943e7fd07ae33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NameInfo
-  info: {fileID: 333096118}
-  moveSpeed: 5
-  moveDistance: 100
-  openPosition: {x: 0, y: 0}
-  originalPosition: {x: 0, y: 0}
-  nextPosition: {x: 0, y: 0}
 --- !u!61 &1673211838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1906,10 +1958,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1673211837}
+      - m_Target: {fileID: 831554218}
         m_TargetAssemblyTypeName: NameInfo, Assembly-CSharp
-        m_MethodName: moveInfo
-        m_Mode: 1
+        m_MethodName: ChangeCurrentSlide
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1929,7 +1981,6 @@ GameObject:
   - component: {fileID: 1855342581}
   - component: {fileID: 1855342583}
   - component: {fileID: 1855342582}
-  - component: {fileID: 1855342584}
   - component: {fileID: 1855342585}
   - component: {fileID: 1855342586}
   m_Layer: 5
@@ -2058,24 +2109,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855342580}
   m_CullTransparentMesh: 1
---- !u!114 &1855342584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855342580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0325f2122ab75d345bb943e7fd07ae33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NameInfo
-  info: {fileID: 316707015}
-  moveSpeed: 5
-  moveDistance: 100
-  openPosition: {x: 0, y: 0}
-  originalPosition: {x: 0, y: 0}
-  nextPosition: {x: 0, y: 0}
 --- !u!61 &1855342585
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2166,14 +2199,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1855342584}
+      - m_Target: {fileID: 831554218}
         m_TargetAssemblyTypeName: NameInfo, Assembly-CSharp
-        m_MethodName: moveInfo
-        m_Mode: 1
+        m_MethodName: ChangeCurrentSlide
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2264,7 +2297,6 @@ GameObject:
   - component: {fileID: 2072149867}
   - component: {fileID: 2072149869}
   - component: {fileID: 2072149868}
-  - component: {fileID: 2072149870}
   - component: {fileID: 2072149871}
   - component: {fileID: 2072149872}
   m_Layer: 5
@@ -2393,24 +2425,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072149866}
   m_CullTransparentMesh: 1
---- !u!114 &2072149870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072149866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0325f2122ab75d345bb943e7fd07ae33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NameInfo
-  info: {fileID: 1866818603}
-  moveSpeed: 5
-  moveDistance: 100
-  openPosition: {x: 0, y: 0}
-  originalPosition: {x: 0, y: 0}
-  nextPosition: {x: 0, y: 0}
 --- !u!61 &2072149871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2501,14 +2515,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2072149870}
+      - m_Target: {fileID: 831554218}
         m_TargetAssemblyTypeName: NameInfo, Assembly-CSharp
-        m_MethodName: moveInfo
-        m_Mode: 1
+        m_MethodName: ChangeCurrentSlide
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

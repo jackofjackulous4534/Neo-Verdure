@@ -1,33 +1,36 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 public class NameInfo : MonoBehaviour
 {
-    [SerializeField] GameObject info;
+    [SerializeField] GameObject[] nameSlides;
+    [SerializeField] int currentSlide;
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float moveDistance = 100f;
-    [SerializeField] Vector2 openPosition;
-    [SerializeField] Vector2 originalPosition;
-    [SerializeField] Vector2 nextPosition;
-    void Awake()
+    [SerializeField] Transform openPosition;
+    [SerializeField] Transform closedPosition;
+
+    //Chsnge current slide Public
+    private void MoveSlide(Transform slide, Transform targetPosition)
     {
-        originalPosition = (Vector2)info.transform.position;
-        openPosition = new Vector2(info.transform.position.x - 350f, info.transform.position.y);
-        nextPosition = originalPosition;
+        slide.position = Vector2.Lerp(slide.position, targetPosition.position, moveSpeed);
     }
-    public void moveInfo()
+    public void ChangeCurrentSlide(int newSlide)
     {
-        if (nextPosition == originalPosition)
+        if (currentSlide != -1)
         {
-            nextPosition = openPosition;
-        } else if (nextPosition == openPosition)
-        {
-            nextPosition = originalPosition;
+            MoveSlide(nameSlides[currentSlide].transform, closedPosition);
         }
-    }
-    void Update()
-    {
-        info.transform.position = Vector2.Lerp(info.transform.position, nextPosition, moveSpeed * Time.deltaTime);
+        if (currentSlide != newSlide)
+        {
+            MoveSlide(nameSlides[newSlide].transform, openPosition);
+            currentSlide = newSlide;
+        }
+        else
+        {
+            currentSlide = -1;
+        }
     }
 }
