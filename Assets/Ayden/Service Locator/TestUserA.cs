@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class TestUserA : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private TestServiceA sv;
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (ServiceLocator.GetService(out TestServiceA v))
+        {
+            sv = v;
+            sv.DoSomething();
+        }
+        else
+        {
+            Debug.LogError("FAILED TO GET TST SERVICE RAAGGGGGG");
+        }
     }
 }
