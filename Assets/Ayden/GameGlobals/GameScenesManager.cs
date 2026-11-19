@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class GameScenesManager : MonoBehaviour
 {
+    static GameScenesManager _instance;
+    public static GameScenesManager Instance { get { return _instance; } }
+
     [RuntimeInitializeOnLoadMethod]
     static void OnGameStart()
     {
@@ -11,7 +14,7 @@ public class GameScenesManager : MonoBehaviour
         instance.name = MethodBase.GetCurrentMethod().DeclaringType.ToString();
         instance.AddComponent<GameScenesManager>();
         DontDestroyOnLoad(instance);
-        ServiceLocator.AddService(instance.GetComponent<GameScenesManager>());
+        _instance = instance.GetComponent<GameScenesManager>();
     }
 
     private GameScenesObj gameScenes;

@@ -6,9 +6,9 @@ public class ButtonChangeScenes : MonoBehaviour
     private GameScenesManager _sceneManager;
     private void Start()
     {
-        if (ServiceLocator.GetService(out GameScenesManager GSM))
+        if (GameScenesManager.Instance)
         {
-            _sceneManager = GSM;
+            _sceneManager = GameScenesManager.Instance;
         }
         else
         {
