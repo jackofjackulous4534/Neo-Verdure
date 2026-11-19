@@ -15,4 +15,7 @@ public class GameManager : MonoBehaviour
 
     public bool gameRunning = true;
     public float gameSpeed = 1f;
+
+    public int currentLevel = 1;
+    public int maxLevelUnlocked = 1;
 }

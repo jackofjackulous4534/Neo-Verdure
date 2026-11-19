@@ -24,14 +24,14 @@ public class GameScenesManager : MonoBehaviour
     public enum GameScreens
     {
         MainMenu,
-        LevelSelect,
-        Intermission,
-        Level,
         Credits,
+        Intermission,
+        LevelSelect,
+        Level,
     }
     //private GameScreens _currentScene;
 
-    public void ChangeScene(GameScreens newScene, int level = 0)
+    public void ChangeScene(GameScreens newScene, int level = 1)
     {
         if (!gameScenes)
         {
@@ -52,7 +52,7 @@ public class GameScenesManager : MonoBehaviour
             //    SceneManager.LoadScene(gameScenes.LevelSelect);
             //    break;
             case GameScreens.Level:
-                SceneManager.LoadScene(gameScenes.Levels[level]);
+                SceneManager.LoadScene(gameScenes.Levels[level - 1]);
                 break;
             default:
                 Debug.LogError("Not a valid scnee selected");

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3d7d9e0641c504f9f954586fabd275, type: 3}
   m_Name: GameScenes
   m_EditorClassIdentifier: Assembly-CSharp::GameScenesObj
-  MainMenu: 
-  Credits: 
+  MainMenu: Assets/Ayden/Scenes/TestMainMenu.unity
+  Credits: Assets/Ayden/Scenes/TestCredits.unity
   Intermission: 
-  Levels: []
+  Levels:
+  - Assets/Ayden/MainTestScene.unity
