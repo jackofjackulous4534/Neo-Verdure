@@ -8,6 +8,7 @@ public class UpgradesSpawner : MonoBehaviour
     [SerializeField] GameObject posTwo;
     [SerializeField] int upgradeOne;
     [SerializeField] int upgradeTwo;
+    public float currentUpgrades;
     void Awake()
     {
         SpawnOne();

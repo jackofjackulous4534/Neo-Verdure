@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Collider2D))]
 public class HitBox : MonoBehaviour
 {
-    [SerializeField] float _damage = 1f;
+    public float _damage = 1f;
     private HashSet<HurtBox> _hurtBoxesInField = new HashSet<HurtBox>();
     private HashSet<HurtBox> _hurtBoxesHit = new HashSet<HurtBox>();
     private bool _isAttacking = false;
