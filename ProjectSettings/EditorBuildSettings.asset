@@ -17,5 +17,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Kodiak/Scene/Credits.unity
     guid: ccbb2c601657060479aecb1e242bdf4c
+  - enabled: 1
+    path: Assets/Ayden/Scenes/TestMainMenu.unity
+    guid: 642b771062087ce48b187c9af8d9e630
+  - enabled: 1
+    path: Assets/Ayden/Scenes/TestCredits.unity
+    guid: ec7afdf0c72f5414eb39cfba523486c1
+  - enabled: 1
+    path: Assets/Ayden/MainTestScene.unity
+    guid: fc84f1ca33248de4fa2ce268a0d32ea3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
