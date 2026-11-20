@@ -1,10 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Linq;
 
 [RequireComponent(typeof(Collider2D))]
-public class HitBox : MonoBehaviour
+public class HitBox : MonoBehaviour, IHasTeam
 {
-    public float _damage = 1f;
+    public PlayerTeams PlayerTeam { get { return _playerTeam; } }
+    [SerializeField] PlayerTeams _playerTeam = PlayerTeams.None;
+
+    [SerializeField] float _damage = 1f;
     private HashSet<HurtBox> _hurtBoxesInField = new HashSet<HurtBox>();
     private HashSet<HurtBox> _hurtBoxesHit = new HashSet<HurtBox>();
     private bool _isAttacking = false;
@@ -34,7 +39,7 @@ public class HitBox : MonoBehaviour
 
     public void StartAttack()
     {
-        foreach (HurtBox hb in _hurtBoxesInField)
+        foreach (HurtBox hb in _hurtBoxesInField.ToList()) //BANDAID FIX LOL
         {
             DamageHurtBox(hb);
         }
@@ -48,6 +53,11 @@ public class HitBox : MonoBehaviour
 
     private void DamageHurtBox(HurtBox hurtBox)
     {
+        if (PlayerTeam == hurtBox.PlayerTeam && PlayerTeam != PlayerTeams.None && hurtBox.PlayerTeam != PlayerTeams.None) 
+        { 
+            //Debug.Log("Skipped");  
+            return; 
+        }
         hurtBox.Damage(_damage);
         _hurtBoxesHit.Add(hurtBox);
     }
