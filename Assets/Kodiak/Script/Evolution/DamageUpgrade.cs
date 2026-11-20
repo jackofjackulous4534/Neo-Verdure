@@ -12,7 +12,7 @@ public class DamageUpgrade : MonoBehaviour
     [SerializeField] float playerDistance;
     public void PickUp()
     {
-        hitBox._damage = hitBox._damage * 2f;
+        //hitBox._damage = hitBox._damage * 2f; BRO WTF YOU DOIN ;-;   D:<
         spawner.currentUpgrades -= 1f;
     }
     public void Awake()

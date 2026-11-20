@@ -617,6 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnFXOnDeath
   _deathParticleVFX: {fileID: 508170569971445651, guid: 4a511df98fd9a444093acfdef8595fb8, type: 3}
+  _deathSFX: {fileID: 0}
 --- !u!1 &498988902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,15 +2815,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813672817287995998, guid: 4a511df98fd9a444093acfdef8595fb8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.65
+      value: -12.99
       objectReference: {fileID: 0}
     - target: {fileID: 8813672817287995998, guid: 4a511df98fd9a444093acfdef8595fb8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.19
+      value: -1.22
       objectReference: {fileID: 0}
     - target: {fileID: 8813672817287995998, guid: 4a511df98fd9a444093acfdef8595fb8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8813672817287995998, guid: 4a511df98fd9a444093acfdef8595fb8, type: 3}
       propertyPath: m_LocalRotation.w
