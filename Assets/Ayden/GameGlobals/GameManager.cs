@@ -12,8 +12,20 @@ public class GameManager : MonoBehaviour
         GameObject instance = new GameObject();
         instance.name = MethodBase.GetCurrentMethod().DeclaringType.ToString();
         instance.AddComponent<GameManager>();
-        DontDestroyOnLoad(instance);
-        _instance = instance.GetComponent<GameManager>();
+    }
+
+    private void Awake()
+    {
+        if (!_instance)
+        {
+            _instance = this;
+            DontDestroyOnLoad(_instance);
+        }
+        else
+        {
+            Debug.Log("THIS ALREADY MADE BRO");
+            //Destroy(this);
+        }
     }
 
     public bool gameRunning = true;
