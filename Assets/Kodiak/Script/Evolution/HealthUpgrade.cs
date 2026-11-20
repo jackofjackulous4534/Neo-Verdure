@@ -1,39 +1,56 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthUpgrade : MonoBehaviour
 {
-    [SerializeField] HealthTracker player;
+    [SerializeField] HealthTracker playerHealth;
+    [SerializeField] PlayerMovement player;
+    [SerializeField] UpgradesSpawner spawner;
     [SerializeField] TextMeshProUGUI InfoText;
-    [SerializeField] GameObject InfoBox;
+    [SerializeField] Image InfoBox;
+    [SerializeField] float playerDistance;
     public void PickUp()
     {
-        player.Health = player.Health * 2f;
+        playerHealth.Health = playerHealth.Health * 2f;
+        spawner.currentUpgrades -= 1f;
     }
-
+    public void Awake()
+    {
+        player = FindAnyObjectByType<PlayerMovement>();
+        spawner = FindAnyObjectByType<UpgradesSpawner>();
+        spawner.currentUpgrades += 1f;
+    }
     public void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Hit" + collision);
         if (collision.gameObject.TryGetComponent<HealthTracker>(out HealthTracker HT))
         {
-            player = HT;
+            playerHealth = HT;
             Debug.Log("attached player health");
             PickUp();
             Destroy(gameObject);
         }
     }
 
-    public void Update()
+    void Update()
     {
-        float playerDistance = Vector2.Distance(transform.position, player.transform.position);
-        if (playerDistance <= 2f)
+        playerDistance = Vector2.Distance(transform.position, player.transform.position);
+        Debug.Log(player.transform.position);
+        if (playerDistance <= 3f)
         {
-            InfoBox.SetActive(true);
-            InfoText.text = "Multiplies you health by 2";
+            InfoBox.enabled = true;
+            InfoText.text = "Multiplies your health by 2";
         }
         else
         {
-            InfoBox.SetActive(false);
+            InfoBox.enabled = false;
+            InfoText.text = "";
+        }
+
+        if (spawner.currentUpgrades <= 1)
+        {
+            Destroy(gameObject);
         }
     }
 }
