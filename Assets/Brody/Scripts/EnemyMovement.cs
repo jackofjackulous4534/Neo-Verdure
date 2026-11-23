@@ -120,19 +120,4 @@ public class EnemyMovement : MonoBehaviour
         _rigidbody.linearVelocity = transform.up * _speed; 
     }
 
-    private void OnDrawGizmos()
-    {
-        avoidanceCooldown -= Time.deltaTime;
-
-        var contactFilter = new ContactFilter2D();
-        contactFilter.SetLayerMask(obstacleLayerMask);
-        Physics2D.CircleCast(
-            transform.position,
-            _obstacleCheckCircle,
-            transform.up,
-            contactFilter,
-            obstacleCollision,
-            checkDistance);
-
-    }
 }
