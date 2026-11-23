@@ -120,7 +120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &694374687154287250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -424,11 +424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea4d284be235dd4db6d1ce78bbce84a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageUpgrade
-  hitBox: {fileID: 0}
-  player: {fileID: 0}
-  InfoText: {fileID: 8690637006186250339}
-  InfoBox: {fileID: 1859537081476122774}
-  playerDistance: 0
 --- !u!50 &2829240774304362128
 Rigidbody2D:
   serializedVersion: 5

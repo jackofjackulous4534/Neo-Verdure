@@ -4,53 +4,16 @@ using UnityEngine.UI;
 
 public class HealthUpgrade : MonoBehaviour
 {
-    [SerializeField] HealthTracker playerHealth;
-    [SerializeField] PlayerMovement player;
-    [SerializeField] UpgradesSpawner spawner;
-    [SerializeField] TextMeshProUGUI InfoText;
-    [SerializeField] Image InfoBox;
-    [SerializeField] float playerDistance;
-    public void PickUp()
-    {
-        playerHealth.Health = playerHealth.Health * 2f;
-        spawner.currentUpgrades -= 1f;
-    }
-    public void Awake()
-    {
-        player = FindAnyObjectByType<PlayerMovement>();
-        spawner = FindAnyObjectByType<UpgradesSpawner>();
-        spawner.currentUpgrades += 1f;
-    }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Hit" + collision);
-        if (collision.gameObject.TryGetComponent<HealthTracker>(out HealthTracker HT))
+        if (collision.gameObject.TryGetComponent(out PlayerMovement PM))
         {
-            playerHealth = HT;
-            Debug.Log("attached player health");
-            PickUp();
-            Destroy(gameObject);
-        }
-    }
-
-    void Update()
-    {
-        playerDistance = Vector2.Distance(transform.position, player.transform.position);
-        Debug.Log(player.transform.position);
-        if (playerDistance <= 3f)
-        {
-            InfoBox.enabled = true;
-            InfoText.text = "Multiplies your health by 2";
-        }
-        else
-        {
-            InfoBox.enabled = false;
-            InfoText.text = "";
-        }
-
-        if (spawner.currentUpgrades <= 1)
-        {
-            Destroy(gameObject);
+            if (collision.gameObject.TryGetComponent<HealthTracker>(out HealthTracker HT))
+            {
+                HT.MaxHealth = HT.MaxHealth * 2;
+                HT.Health = HT.MaxHealth;
+                Destroy(gameObject);
+            }
         }
     }
 }
