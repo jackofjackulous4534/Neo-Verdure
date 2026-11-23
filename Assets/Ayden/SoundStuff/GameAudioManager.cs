@@ -12,6 +12,9 @@ public class GameAudioManager : MonoBehaviour
     {
         new GameObject(MethodBase.GetCurrentMethod().DeclaringType.ToString(), typeof(GameAudioManager), typeof(AudioSource));
     }
+
+    private 
+
     private void Awake()
     {
         if (!_instance)
