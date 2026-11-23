@@ -9,7 +9,7 @@ public class HitBox : MonoBehaviour, IHasTeam
     public PlayerTeams PlayerTeam { get { return _playerTeam; } }
     [SerializeField] PlayerTeams _playerTeam = PlayerTeams.None;
 
-    [SerializeField] float _damage = 1f;
+    private float _damage = 1f;
     private HashSet<HurtBox> _hurtBoxesInField = new HashSet<HurtBox>();
     private HashSet<HurtBox> _hurtBoxesHit = new HashSet<HurtBox>();
     private bool _isAttacking = false;
@@ -37,8 +37,9 @@ public class HitBox : MonoBehaviour, IHasTeam
     public void OnTriggerExit2D(Collider2D collision) => HandleCollisionExit(collision);
     public void OnCollisionExit2D(Collision2D collision) => HandleCollisionExit(collision.collider);
 
-    public void StartAttack()
+    public void StartAttack(float damage)
     {
+        _damage = damage;
         foreach (HurtBox hb in _hurtBoxesInField.ToList()) //BANDAID FIX LOL
         {
             DamageHurtBox(hb);

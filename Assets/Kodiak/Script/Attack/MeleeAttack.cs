@@ -5,6 +5,7 @@ public class MeleeAttack : MonoBehaviour
 {
     [SerializeField] float attackTime = 0.15f;
     [SerializeField] float coolDownDuration = 0.2f;
+    public float damage;
     private float startCooldownTime;
     private bool isAttacking;
 
@@ -13,7 +14,7 @@ public class MeleeAttack : MonoBehaviour
     IEnumerator ActivateHitBox()
     {
         isAttacking = true;
-        attackBox.StartAttack();
+        attackBox.StartAttack(damage);
         yield return new WaitForSeconds(attackTime);
         attackBox.EndAttack();
         startCooldownTime = Time.time;

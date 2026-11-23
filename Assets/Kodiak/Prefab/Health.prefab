@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2728824604047490889
 RectTransform:
   m_ObjectHideFlags: 0
@@ -184,11 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1afcf8682e49ecb48bf25ce8ca1bc1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthUpgrade
-  playerHealth: {fileID: 6795269470974198331, guid: 91a1019c54ae39845b13047c1251abf8, type: 3}
-  player: {fileID: 0}
-  InfoText: {fileID: 4635918693176789724}
-  InfoBox: {fileID: 6256993826285076959}
-  playerDistance: 0
 --- !u!61 &-3525457872229819826
 BoxCollider2D:
   m_ObjectHideFlags: 0
