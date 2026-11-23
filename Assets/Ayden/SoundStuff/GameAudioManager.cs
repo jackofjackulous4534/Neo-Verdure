@@ -1,26 +1,37 @@
+using System;
 using System.Reflection;
 using UnityEngine;
 
 public class GameAudioManager : MonoBehaviour
 {
-    static GameManager _instance;
-    public static GameManager Instance { get { return _instance; } }
+    static GameAudioManager _instance;
+    public static GameAudioManager Instance { get { return _instance; } }
 
     [RuntimeInitializeOnLoadMethod]
     static void OnGameStart()
     {
-        GameObject instance = new GameObject();
-        instance.name = MethodBase.GetCurrentMethod().DeclaringType.ToString();
-        instance.AddComponent<GameManager>();
-        DontDestroyOnLoad(instance);
-        _instance = instance.GetComponent<GameManager>();
+        new GameObject(MethodBase.GetCurrentMethod().DeclaringType.ToString(), typeof(GameAudioManager), typeof(AudioSource));
+    }
+    private void Awake()
+    {
+        if (!_instance)
+        {
+            _instance = this;
+            DontDestroyOnLoad(_instance);
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
-    //private void Awake()
-    //{
-    //    if (this != _instance)
-    //    {
-    //        Debug.Log("DIE WITH FIRE");
-    //    }
-    //}
+    public void PlaySFX(AudioClip sfx, float volume = 1f)
+    {
+        GameObject templol = new GameObject("AudioSource lul", typeof(AudioSource));
+        AudioSource audioInstance = templol.GetComponent<AudioSource>();
+
+        audioInstance.volume = volume;
+        audioInstance.PlayOneShot(sfx);
+        Destroy(audioInstance, sfx.length);
+    }
 }

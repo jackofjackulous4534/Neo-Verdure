@@ -10,11 +10,19 @@ public class GameScenesManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod]
     static void OnGameStart()
     {
-        GameObject instance = new GameObject();
-        instance.name = MethodBase.GetCurrentMethod().DeclaringType.ToString();
-        instance.AddComponent<GameScenesManager>();
-        DontDestroyOnLoad(instance);
-        _instance = instance.GetComponent<GameScenesManager>();
+        new GameObject(MethodBase.GetCurrentMethod().DeclaringType.ToString(), typeof(GameScenesManager));
+    }
+    private void Awake()
+    {
+        if (!_instance)
+        {
+            _instance = this;
+            DontDestroyOnLoad(_instance);
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     private GameScenesObj gameScenes;

@@ -9,9 +9,7 @@ public class GameManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod]
     static void OnGameStart()
     {
-        GameObject instance = new GameObject();
-        instance.name = MethodBase.GetCurrentMethod().DeclaringType.ToString();
-        instance.AddComponent<GameManager>();
+        new GameObject(MethodBase.GetCurrentMethod().DeclaringType.ToString(), typeof(GameManager));
     }
 
     private void Awake()
@@ -23,8 +21,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("THIS ALREADY MADE BRO");
-            //Destroy(this);
+            Destroy(this);
         }
     }
 
