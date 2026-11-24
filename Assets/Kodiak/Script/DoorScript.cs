@@ -6,8 +6,8 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     [SerializeField] float openSpeed = 2f;
-    [SerializeField] float openDistanceX = 3f;
-    [SerializeField] float openDistanceY = 3f;
+    [SerializeField] float openDistanceX = 2f;
+    [SerializeField] float openDistanceY = 2f;
     [SerializeField] bool opened;
     public bool locked;
     private Vector2 closedPosition;

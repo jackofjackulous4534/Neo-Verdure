@@ -15,7 +15,7 @@ public class HealthTracker : MonoBehaviour//, IHasTeam
     {
         if (Armor > 0)
         {
-            damage = damage * 0.8f;
+            damage = damage * 0.7f;
             Armor = Mathf.Clamp(Armor - damage, 0, MaxArmor);
         }
         else
