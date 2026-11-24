@@ -5,6 +5,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody2D))]
 public class AiBehvior : MonoBehaviour
 {
+    [SerializeField] float sightRange;
+    [SerializeField] LayerMask groundLayer;
     private AStarManager AStar;
     private Rigidbody2D rb;
     public float walkSpeed;
@@ -21,7 +23,7 @@ public class AiBehvior : MonoBehaviour
     {
         AStar = FindAnyObjectByType<AStarManager>();
         rb = GetComponent<Rigidbody2D>();
-        currentState = state.ChasePathfind;
+        currentState = state.Idle;
     }
 
     private void MoveTowards(Vector3 targetPosition, float speed)
@@ -32,9 +34,53 @@ public class AiBehvior : MonoBehaviour
     }
     private void Update()
     {
+        CheckState();
+        ExecuteState();
+    }
+
+    private void CheckState()
+    {
         if (currentState == state.Idle)
         {
+            if ((player.transform.position - transform.position).magnitude < sightRange)
+            {
+                currentState = state.ChaseDirect;
+                return;
+            }
+        }
+        else if (currentState == state.ChaseDirect)
+        {
+            if ((player.transform.position - transform.position).magnitude > sightRange)
+            {
+                currentState = state.Idle;
+                return;
+            }
+            RaycastHit2D hitData = Physics2D.Linecast(transform.position, player.transform.position, groundLayer);
+            if (hitData)
+            {
+                currentState = state.ChasePathfind;
+            }
+        }
+        else if (currentState == state.ChasePathfind)
+        {
+            if ((player.transform.position - transform.position).magnitude > sightRange)
+            {
+                currentState = state.Idle;
+                return;
+            }
+            RaycastHit2D hitData = Physics2D.Linecast(transform.position, player.transform.position, groundLayer);
+            if (!hitData)
+            {
+                currentState = state.ChaseDirect; 
+            }
+        }
+    }
 
+    private void ExecuteState()
+    {
+        if (currentState == state.Idle)
+        {
+            rb.linearVelocity = Vector2.zero;
         }
         else if (currentState == state.ChaseDirect)
         {
@@ -47,12 +93,22 @@ public class AiBehvior : MonoBehaviour
             {
                 return;
             }
-            Vector3 difference = pathPoints[0] - transform.position;
-            if (difference.magnitude < 0.1f)
+            if ((pathPoints[0] - transform.position).magnitude < 1.1f)
             {
                 pathPoints.RemoveAt(0);
             }
-            MoveTowards(pathPoints[0], runSpeed); 
+            MoveTowards(pathPoints[0], runSpeed);
         }
+    }
+
+    [SerializeField] bool _debug = true;
+    private void OnDrawGizmos()
+    {
+        if (!_debug)
+        {
+            return;
+        }
+        Gizmos.color = Color.rebeccaPurple;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 }
