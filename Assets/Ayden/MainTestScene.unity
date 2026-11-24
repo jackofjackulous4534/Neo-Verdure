@@ -299,6 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
   MaxHealth: 5
   Health: 1
+  MaxArmor: 5
+  Armor: 0
 --- !u!114 &344118249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
   MaxHealth: 5
   Health: 1
+  MaxArmor: 5
+  Armor: 0
 --- !u!212 &413539806
 SpriteRenderer:
   serializedVersion: 3
@@ -617,6 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnFXOnDeath
   _deathParticleVFX: {fileID: 508170569971445651, guid: 4a511df98fd9a444093acfdef8595fb8, type: 3}
+  _deathSFX: {fileID: 0}
 --- !u!1 &498988902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
   MaxHealth: 5
   Health: 1
+  MaxArmor: 5
+  Armor: 0
 --- !u!114 &906301170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2175,6 +2182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
   MaxHealth: 5
   Health: 10
+  MaxArmor: 5
+  Armor: 0
 --- !u!114 &1605364296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,6 +2808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
   attackTime: 0.15
   coolDownDuration: 0.2
+  damage: 0
   attackBox: {fileID: 5530544125467227327}
 --- !u!1001 &3459258657193614507
 PrefabInstance:
@@ -3010,6 +3020,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d19054e2-5177-40e0-8cbd-2f83cd0f1c57
     m_ActionName: 'Player/Drop[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da855e99-f363-4520-b2d7-49701d0d5de4
+    m_ActionName: 'Player/Reload[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -3028,7 +3042,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitBox
   _playerTeam: 2
-  _damage: 1
 --- !u!1 &5165728826626528318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3088,7 +3101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitBox
   _playerTeam: 1
-  _damage: 1
 --- !u!4 &5592111164222588843
 Transform:
   m_ObjectHideFlags: 0
@@ -3098,7 +3110,7 @@ Transform:
   m_GameObject: {fileID: 8823254451543640194}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.75, y: 2.41, z: 0}
+  m_LocalPosition: {x: -1.22, y: 2.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3119,6 +3131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
   MaxHealth: 5
   Health: 10
+  MaxArmor: 5
+  Armor: 0
 --- !u!114 &6891714970553163644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,6 +3145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7700d371d47bc5f42a6fe0065b0081e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::playerAttackInput
+  gun: {fileID: 0}
+  hasGun: 0
 --- !u!4 &7436172962040645026
 Transform:
   m_ObjectHideFlags: 0
@@ -3174,6 +3190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   _runSpeed: 8
   _walkSpeed: 5
+  speedMulti: 1
   _slowedEffect: 0.7
   slowed: 0
 --- !u!58 &8538333609311231387
