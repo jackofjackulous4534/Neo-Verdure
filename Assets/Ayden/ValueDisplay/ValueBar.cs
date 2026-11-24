@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ValueBar : MonoBehaviour
+public class ValueBar : MonoBehaviour, IDisplaysValue
 {
-    [SerializeField] Image barBase;
+    //[SerializeField] Image barBase;
     [SerializeField] Image barDisplay;
 
     [SerializeField] float currentValue, maxValue, minValue;
@@ -11,12 +11,12 @@ public class ValueBar : MonoBehaviour
     [SerializeField] bool hideIfMin = true;
     private void HideBar()
     {
-        barBase.enabled = false;
+        //barBase.enabled = false;
         barDisplay.enabled = false;
     }
     private void ShowBar()
     {
-        barBase.enabled = true;
+        //barBase.enabled = true;
         barDisplay.enabled = true;
     }
     public void Setup(float newCurrent, float newMax, float newMin = 0)
@@ -25,25 +25,25 @@ public class ValueBar : MonoBehaviour
         maxValue = newMax;
         minValue = newMin;
 
-        if (barBase == null || barDisplay == null)
+        if (barDisplay == null)
         {
             Debug.LogError("VALUE BAR INCORRECTLY SET UP");
             return;
         }
-        UpdateValue(currentValue);
+        SetValue(currentValue);
     }
 
-    public void UpdateValue(float newValue)
+    public void SetValue(float newValue)
     {
         currentValue = Mathf.Clamp(newValue, minValue, maxValue);
 
-        if (barBase == null || barDisplay == null)
+        if (barDisplay == null)
         {
             Debug.LogError("VALUE BAR INCORRECTLY SET UP");
             return;
         }
-
-        barDisplay.rectTransform.sizeDelta = new Vector2(barBase.rectTransform.sizeDelta.x * (currentValue - minValue) / (maxValue - minValue), 0);
+        barDisplay.fillAmount = Mathf.Clamp((currentValue - minValue) / (maxValue - minValue), 0f, 1f);
+        //barDisplay.rectTransform.sizeDelta = new Vector2(barBase.rectTransform.sizeDelta.x * (currentValue - minValue) / (maxValue - minValue), 0);
         if ((hideIfMax && currentValue == maxValue) || (hideIfMin && currentValue == minValue))
             HideBar();
         else
@@ -52,6 +52,10 @@ public class ValueBar : MonoBehaviour
 
     private void Awake()
     {
-        UpdateValue(currentValue);
+        SetValue(currentValue);
+    }
+    private void Update()
+    {
+        SetValue(currentValue);
     }
 }
