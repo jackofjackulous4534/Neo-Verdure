@@ -3,7 +3,6 @@ using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
     static SoundManager _instance;
@@ -12,11 +11,11 @@ public class SoundManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod]
     static void OnGameStart()
     {
-        GameObject inst = new GameObject(MethodBase.GetCurrentMethod().DeclaringType.ToString(), typeof(AudioSource));
-        inst.AddComponent<SoundManager>();
+        GameObject inst = new GameObject(MethodBase.GetCurrentMethod().DeclaringType.ToString(), typeof(SoundManager));
     }
 
-    private AudioSource _musicSource;
+    private AudioSource _musicObject;
+    private AudioSource _musicInstance;
     private AudioSource _SFXObject;
 
     private void Awake()
@@ -25,7 +24,6 @@ public class SoundManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(_instance);
-            _musicSource = GetComponent<AudioSource>();
         }
         else
         {
@@ -33,18 +31,30 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _musicObject = Resources.Load<AudioSource>("MusicObject");
+        if (!_musicObject) Debug.LogError("FAILED TO GET MusicObject");
+        _musicInstance = Instantiate(_musicObject, Vector3.zero, Quaternion.identity);
+
+        _SFXObject = Resources.Load<AudioSource>("SFXObject");
+        if (!_SFXObject) Debug.LogError("FAILED TO GET SFXObject");
+    }
+
     public void PlaySFX(AudioClip sfx, Vector3 spawnPos, float volume = 1f)
     {
         AudioSource audioInstance = Instantiate(_SFXObject, spawnPos, Quaternion.identity);
         audioInstance.volume = volume;
         audioInstance.PlayOneShot(sfx);
-        Destroy(audioInstance, sfx.length);
+        Destroy(audioInstance.gameObject, sfx.length);
     }
 
-    public void SetMusicTrack(AudioClip musicTrack)
+    public void PlayMusic(AudioClip musicTrack, float volume = 1f, bool resetTrackIfSame = false)
     {
-        _musicSource.clip = musicTrack;
-        _musicSource.Play();
+        //if ()
+        _musicInstance.clip = musicTrack;
+        _musicInstance.volume = volume;
+        _musicInstance.Play();
     }
 
 }

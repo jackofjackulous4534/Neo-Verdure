@@ -25,11 +25,12 @@ public class GameScenesManager : MonoBehaviour
         }
     }
 
-    private GameScenesObj gameScenes;
+    private GameScenesObj _gameScenes;
 
     private void Start()
     {
-        gameScenes = UnityEngine.Resources.Load<GameScenesObj>("GameScenes"); // SCREW U UNITYYYYYYYYYYYYY
+        _gameScenes = UnityEngine.Resources.Load<GameScenesObj>("GameScenes"); // SCREW U UNITYYYYYYYYYYYYY
+        if (!_gameScenes) Debug.LogError("FAILED TO GET GameScenes");
     }
 
     public enum GameScreens
@@ -44,26 +45,26 @@ public class GameScenesManager : MonoBehaviour
 
     public void ChangeScene(GameScreens newScene, int level = 1)
     {
-        if (!gameScenes)
+        if (!_gameScenes)
         {
             Debug.LogError("NO GAME SCENES VAR RAHHHH");
             return;
         }
         switch (newScene) {
             case GameScreens.MainMenu:
-                SceneManager.LoadScene(gameScenes.MainMenu);
+                SceneManager.LoadScene(_gameScenes.MainMenu);
                 break;
             case GameScreens.Credits:
-                SceneManager.LoadScene(gameScenes.Credits);
+                SceneManager.LoadScene(_gameScenes.Credits);
                 break;
             case GameScreens.Intermission:
-                SceneManager.LoadScene(gameScenes.Intermission);
+                SceneManager.LoadScene(_gameScenes.Intermission);
                 break;
             //case GameScreens.LevelSelect:
             //    SceneManager.LoadScene(gameScenes.LevelSelect);
             //    break;
             case GameScreens.Level:
-                SceneManager.LoadScene(gameScenes.Levels[level - 1]);
+                SceneManager.LoadScene(_gameScenes.Levels[level - 1]);
                 break;
             default:
                 Debug.LogError("Not a valid scnee selected");
