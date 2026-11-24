@@ -11,6 +11,7 @@ public class BulletMovement : MonoBehaviour, IHasTeam
     void Awake()
     {
         _startOfLife = Time.time;
+        // Debug.Log("Spawned");
     }
     public void FixedUpdate()
     {
