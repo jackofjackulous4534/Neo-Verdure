@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunScript : MonoBehaviour
@@ -10,6 +11,7 @@ public class GunScript : MonoBehaviour
     [SerializeField] float reloadSpeed = 1f;
     [SerializeField] bool canShoot;
     [SerializeField] GameObject Bullet;
+    [SerializeField] GameObject Muzzle;
     public OrbitAnchorAndAimAtTarget orbitScript;
     void Awake()
     {
@@ -21,7 +23,7 @@ public class GunScript : MonoBehaviour
         {
             canShoot = false;
             Ammo -= 1;
-            Instantiate(Bullet, transform.position, Quaternion.identity);
+            Instantiate(Bullet, Muzzle.transform.position, transform.rotation);
             yield return new WaitForSeconds(fireRate);
             canShoot = true;
         }
