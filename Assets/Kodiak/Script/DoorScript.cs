@@ -6,7 +6,8 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     [SerializeField] float openSpeed = 2f;
-    [SerializeField] float openDistance = 3f;
+    [SerializeField] float openDistanceX = 2f;
+    [SerializeField] float openDistanceY = 2f;
     [SerializeField] bool opened;
     public bool locked;
     private Vector2 closedPosition;
@@ -16,9 +17,8 @@ public class DoorScript : MonoBehaviour
     public void Awake()
     {
         player = FindAnyObjectByType<PlayerMovement>();
-        openPosition = new Vector2(transform.position.x, transform.position.y + openDistance);
+        openPosition = new Vector2(transform.position.x + openDistanceX, transform.position.y + openDistanceY);
         closedPosition = transform.position;
-        locked = true;
     }
     public void Update()
     {

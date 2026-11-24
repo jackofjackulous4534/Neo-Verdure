@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Variables")]
     [SerializeField] float _runSpeed = 8;
     [SerializeField] float _walkSpeed = 5;
+    public float speedMulti = 1f;
     [SerializeField] float _slowedEffect = 0.7f;
     public bool slowed;
     private float _moveSpeed;
@@ -27,11 +28,11 @@ public class PlayerMovement : MonoBehaviour
         // moves the player based on the movement Vector2
         if (slowed)
         {
-            _rb.linearVelocity = _movement * _moveSpeed * _slowedEffect;
+            _rb.linearVelocity = _movement * _moveSpeed * _slowedEffect * speedMulti;
         }
         else if (!slowed)
         {
-            _rb.linearVelocity = _movement * _moveSpeed;
+            _rb.linearVelocity = _movement * _moveSpeed * speedMulti;
         }
     }
 
