@@ -12,6 +12,6 @@ public class CursorFollowMouse : MonoBehaviour
     private void FixedUpdate()
     {
         mousePosition = CustomUtilities.GetMousePos();
-        transform.position = new Vector2(mousePosition.x + 0.5f, mousePosition.y - 0.4f);
+        transform.position = new Vector2(mousePosition.x + 0.25f, mousePosition.y - 0.2f);
     }
 }
